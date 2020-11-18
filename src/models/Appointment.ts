@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm'
 // const { Entity, Column, PrimaryGeneratedColumn } = require('Typeorm')
 // todas as funções do model, levam strings como parametros.
 // import User from './Users'
@@ -14,12 +14,8 @@ class Appointment {
   @Column()
   providerID: string
 
-  /* @ManyToOne(() => User)
-  @JoinColumn({ name: 'providerID' })
-  provider:User
-
   @UpdateDateColumn()
-  updateAt:Date  */
+  updateAt:Date
 
   @CreateDateColumn()
   createAt: Date

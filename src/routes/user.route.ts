@@ -3,20 +3,19 @@ import CreateUserService from '../services/CreateUserService'
 
 const UserRouter = Router()
 
-UserRouter.post('/register', async (request, response) => {
+export default UserRouter.post('/', async (request, response) => {
   try {
     const { email, name, password } = await request.body
     const CreateUser = new CreateUserService()
-    const User = await CreateUser.execute({
+
+    const user = await CreateUser.execute({
       email,
       name,
       password
     })
 
-    response.json(User)
+    response.json(user)
   } catch (err) {
     return response.status(400).json({ error: err.message })
   }
 })
-
-export default UserRouter

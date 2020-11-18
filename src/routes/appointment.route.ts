@@ -4,17 +4,18 @@ import { parseISO } from 'date-fns'
 
 import AppointmentsRepostiroy from '../repositories/AppointmentsRepository'
 import CreateAppointmentService from '../services/CreateAppointmentService'
+import AUTH from '../middleware/Authentication'
+const CustomRouter = Router()
 
-const appointmentsRouter = Router()
-
-appointmentsRouter.get('/appointments', (request, response) => {
+CustomRouter.use(AUTH)
+CustomRouter.get('/appointments', (request, response) => {
   const appointmentsRepository = getCustomRepository(AppointmentsRepostiroy)
   const appointments = appointmentsRepository.find()
 
   return response.json(appointments)
 })
 
-appointmentsRouter.post('/', async (request, response) => {
+CustomRouter.post('/', async (request, response) => {
   try {
     const { providerID, date } = request.body
 
@@ -32,4 +33,4 @@ appointmentsRouter.post('/', async (request, response) => {
   }
 })
 
-export default appointmentsRouter
+export default CustomRouter
